@@ -12,19 +12,27 @@ Bibliotecas adicionais: **https://github.com/stleary/JSON-java**
 
 O programa pode ser iniciado da seguinte maneira:
 
-`cpu-simulate [arquivo][opções]`
+`cpu-simulate [arquivo|generador][política][opções]`
 
 Onde as opções disponíveis são:
 
-1. `--generate` (Em vez de um arquivo específico, gerará processos utilizando uma distribuição normal)
+**Gerador:**
 
-2. `fcfs` (First-come, first-served) | `rr` (Round-robin)
+1. `--generate 100` (Em vez de um arquivo específico, gerará 100 processos utilizando uma distribuição normal)
 
-2.1 `-q=2` (quantum, para o caso de Round-robin)
+**Política:**
 
-3. `--time` (Onde o simulador durará realmente o tempo esperado pelo arquivo, em segundos)
+1. `fcfs` (First-come, first-served)
 
-4. `--quiet` (Onde o simulador imprimirá apenas o resultado final)
+2. `rr` (Round-robin)
+
+2.1 `-q 2` (define o quantum)
+
+**Opções:**
+
+1. `--time` (Onde o simulador durará realmente o tempo esperado pelo arquivo, em segundos)
+
+2. `--quiet` (Onde o simulador imprimirá apenas o resultado final)
 
 Já o arquivo será um **JSON** da seguinte estrutura:
 
