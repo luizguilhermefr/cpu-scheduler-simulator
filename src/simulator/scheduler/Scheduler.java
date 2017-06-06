@@ -4,21 +4,19 @@ public class Scheduler {
 
     private PCB[] processControlBlock;
     private int nProcess;
-    float timeLine;
+    float timeLine = 0;
 
-    Scheduler(){
-        processControlBlock = new PCB[0];
-        nProcess = 0;
-        timeLine = 0;
+    Scheduler(PCB[] pcb){
+        processControlBlock = pcb;
     }
 
-    void setPcb(int q, int arrivalTime, int waitTime, int remainingTime, float executed, double averageExecutionTime, double averageWaitTime, float beginTime, float endTime){
+    /*void setPcb(int q, float arrivalTime, float waitTime, float remainingTime, float executed, double averageExecutionTime, double averageWaitTime, float beginTime, float endTime){
         PCB[] temp  = processControlBlock;
         nProcess++;
         processControlBlock = new PCB[nProcess];
         System.arraycopy(temp, 0, processControlBlock,0,temp.length);
         processControlBlock[nProcess -1] = new PCB(q, arrivalTime, waitTime, remainingTime, executed, averageExecutionTime, averageWaitTime, beginTime, endTime);
-    }
+    }*/
 
     private void sortPcb(){
         for (int i = 0; i < nProcess; i ++){
@@ -47,7 +45,7 @@ public class Scheduler {
             processControlBlock[i].setExecuted(processControlBlock[i].getExecutionTime());
             processControlBlock[i].setRemainingTime(0);
             processControlBlock[i].setAverageExecutionTime(processControlBlock[i].getExecutionTime());
-            System.out.println("Executado: " + processControlBlock[i].getExecuted() + " Restante: " + processControlBlock[i].getRemainingTime());
+            System.out.println("Executado: " + processControlBlock[i].getExecuted() + " Restante: " + processControlBlock[i].getRemainingTime() + " Tempo total:" + timeLine + " Begin: " + processControlBlock[i].getBeginTime() + " End: " + processControlBlock[i].getEndTime());
         }
     }
 

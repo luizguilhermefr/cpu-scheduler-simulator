@@ -1,6 +1,8 @@
 package simulator.scheduler;
 
 public class PCB {
+    private String name;
+    private float burstTime;
     private float quantum;
     private float arrivalTime;
     private float executionTime;
@@ -10,7 +12,7 @@ public class PCB {
     private float endTime;
     private double averageExecutionTime, averageWaitTime;
 
-    PCB(int q, float arrivalTime, float executionTime, float remainingTime, float executed, double averageExecutionTime, double averageWaitTime, float beginTime, float endTime) {
+    /*PCB(int q, float arrivalTime, float executionTime, float remainingTime, float executed, double averageExecutionTime, double averageWaitTime, float beginTime, float endTime) {
         quantum = q;
         this.arrivalTime = arrivalTime;
         this.executionTime = executionTime;
@@ -20,9 +22,16 @@ public class PCB {
         this.endTime = endTime;
         this.averageExecutionTime = averageExecutionTime;
         this.averageWaitTime = averageWaitTime;
+    }*/
+
+    PCB (String name, float arrivalTime, float burstTime) {
+        System.out.println("processo criando: nome" + name + " arrival: " + arrivalTime + " burst: " + burstTime);
+        this.name = name;
+        this.arrivalTime = arrivalTime;
+        this.burstTime = burstTime;
     }
 
-    public float getBeginTime() {
+    float getBeginTime() {
         return beginTime;
     }
 
@@ -30,7 +39,7 @@ public class PCB {
         this.beginTime = beginTime;
     }
 
-    public float getEndTime() {
+    float getEndTime() {
         return endTime;
     }
 
