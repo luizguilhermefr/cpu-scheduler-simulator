@@ -1,40 +1,42 @@
 # CPU Scheduling Simulator #
 
-## Projeto ##
+## Project ##
 
-### Especificações técnicas ###
+### Specifications ###
 
-Linguagem: **Java JDK 8**
+Language: **Java JDK 8**
 
-Bibliotecas adicionais: **https://github.com/stleary/JSON-java**
+Additional Libraries: **https://github.com/stleary/JSON-java**
 
-### Uso Esperado ###
+### Use ###
 
-O programa pode ser iniciado da seguinte maneira:
+The program may be call using:
 
-`cpu-simulate [arquivo|generador][política][opções]`
+`java -jar program.jar [file|generator][policy|all][generator options]
 
-Onde as opções disponíveis são:
+Where:
 
-**Gerador:**
+1. `java -jar` Invokes the JRE to run the program.
 
-1. `--generate 100` (Em vez de um arquivo específico, gerará 100 processos utilizando uma distribuição normal)
+2. `program.jar` The built program location.
 
-**Política:**
+3. `file|generator` The input file or `--generate` to make the program to generate random processes using normal distribution (see generator options below).
 
-1. `fcfs` (First-come, first-served)
+4. `policy|all` The scheduling policy or all of them. Currently `fcfs` to First Come, First Served or `rr` to Round Robin. Call `--all` to omit the policy and call both. In the two last cases, you must also specify:
 
-2. `rr` (Round-robin)
+4.1 `quantum` The quantum for Round Robin policy. Inform using `-q FLOAT`.
 
-2.1 `-q 2` (define o quantum)
+5. `generator options` When calling the generator, you may specify the number of processes, the desired mean and standard deviation. This can be done using: `-n INTEGER -m FLOAT -sd FLOAT`.
 
-**Opções:**
+Some examples would be:
 
-1. `--time` (Onde o simulador durará realmente o tempo esperado pelo arquivo, em segundos)
+1. `java -jar cpu-scheduler.jar proc.json rr 2`
 
-2. `--quiet` (Onde o simulador imprimirá apenas o resultado final)
+2. `java -jar cpu-scheduler.jar --generate fcfs -n 10 -m 5 -sd 2`
 
-Já o arquivo será um **JSON** da seguinte estrutura:
+3. `java -jar cpu-scheduler.jar /home/username/proc.json --all -q 2`
+
+The input file is a **JSON** structured like:
 
 ```
 {
@@ -54,17 +56,14 @@ Já o arquivo será um **JSON** da seguinte estrutura:
 }
 ```
 
-Já o retorno esperado, dependerá das opções escolhidas.
+And the expected return:
 
-Em todos os casos, o programa inicia com:
 
 ```
 Starting scheduling with 3 process.
 Policy: Round Robin
 Quantum: 2
 ```
-
-Para o caso `--quiet`, será apenas a seguinte tabela:
 
 ```
 -----------------------------------------------
@@ -75,7 +74,6 @@ Para o caso `--quiet`, será apenas a seguinte tabela:
 -----------------------------------------------
 ```
 
-Do contrário, além disso, a cada preempção, imprimirá:
 
 ```
 -- Preemption -- Current Time = 2.2 ---
@@ -85,4 +83,3 @@ Do contrário, além disso, a cada preempção, imprimirá:
 ---------------------------------------
 ```
 
-Para o caso `--time`, o programa durará exatamente o tempo previsto, convertido para segundos. A resposta não alterará, porém a interação com o usuário sim.
