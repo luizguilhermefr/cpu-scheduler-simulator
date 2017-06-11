@@ -29,8 +29,9 @@ class FCFS extends Scheduler {
                 temp += processControlBlock[j].getBurstTime();
             }
             processControlBlock[i].setWaitTime(temp - processControlBlock[i].getArrivalTime() + normalization);
-            if (i + 1 != nProcess)
+            if (i + 1 != nProcess) {
                 preemptionTable(i, i + 1, processControlBlock[i].getEndTime());
+            }
         }
         averageTime();
         resultTable();

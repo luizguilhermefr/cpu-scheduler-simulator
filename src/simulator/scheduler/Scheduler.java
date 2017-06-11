@@ -44,8 +44,9 @@ class Scheduler {
         int qtdSpace = 0;
         if (limit >= text.length()) {
             qtdSpace = limit - text.length();
-            for (int i = 0; i < qtdSpace; i++)
+            for (int i = 0; i < qtdSpace; i++) {
                 text += " ";
+            }
             return text;
         } else {
             String temp = "";

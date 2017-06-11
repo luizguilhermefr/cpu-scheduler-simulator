@@ -40,10 +40,11 @@ class RR extends Scheduler {
                     for (int j = 0; j < nProcess; j++) {
                         if (i != j && processControlBlock[j].getRemainingTime() > 0) {
                             float temp = 0;
-                            if (processControlBlock[i].getRemainingTime() >= this.quantum)
+                            if (processControlBlock[i].getRemainingTime() >= this.quantum) {
                                 temp = processControlBlock[j].getWaitTime() + this.quantum;
-                            else
+                            } else {
                                 temp = processControlBlock[j].getWaitTime() + processControlBlock[i].getRemainingTime();
+                            }
                             processControlBlock[j].setWaitTime(temp);
                         }
                     }
