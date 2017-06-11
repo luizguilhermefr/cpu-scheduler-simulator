@@ -10,75 +10,74 @@ public class PCB {
     private float endTime;
     private float waitTime;
 
-    public float getWaitTime() {
-        return waitTime;
+    float getWaitTime () {
+        return this.waitTime;
     }
 
-    public void setWaitTime(float waitTime) {
+    void setWaitTime (float waitTime) {
         this.waitTime = waitTime;
     }
 
-    public void changeWaitTime(float value) {
+    void changeWaitTime (float value) {
         this.waitTime -= this.arrivalTime;
         this.waitTime += value;
     }
 
-    public PCB (String name, float burstTime, float arrivalTime) {
-//        System.out.println("processo criando: nome" + name + " burst: " + burstTime + " arrival: " + arrivalTime );
+    PCB (String name, float burstTime, float arrivalTime) {
         this.name = name;
         this.arrivalTime = arrivalTime;
         this.burstTime = burstTime;
     }
 
-    protected String getName(){
+    String getName () {
         return this.name;
     }
 
-    protected float getBurstTime() {
-        return burstTime;
+    float getBurstTime () {
+        return this.burstTime;
     }
 
-    protected void setBurstTime(float burstTime) {
+    protected void setBurstTime (float burstTime) {
         this.burstTime = burstTime;
     }
 
-    protected float getBeginTime() {
-        return beginTime;
+    float getBeginTime () {
+        return this.beginTime;
     }
 
-    protected void setBeginTime(float beginTime) {
+    void setBeginTime (float beginTime) {
         this.beginTime = beginTime;
     }
 
-    protected float getEndTime() {
-        return endTime;
+    float getEndTime () {
+        return this.endTime;
     }
 
-    protected void setEndTime(float endTime) {
+    void setEndTime (float endTime) {
         this.endTime = endTime;
     }
 
-    protected float getRemainingTime() {
-        return remainingTime;
+    float getRemainingTime () {
+        return this.remainingTime;
     }
 
-    protected void setRemainingTime(float remainingTime) {
+    void setRemainingTime (float remainingTime) {
         this.remainingTime = remainingTime;
     }
 
-    protected float getExecuted() {
-        return executed;
+    float getExecuted () {
+        return this.executed;
     }
 
-    protected void setExecuted(float executed) {
+    void setExecuted (float executed) {
         this.executed = executed;
     }
 
-    protected float getArrivalTime() {
-        return arrivalTime;
+    float getArrivalTime () {
+        return this.arrivalTime;
     }
 
-    protected void setArrivalTime(int arrivalTime) {
+    protected void setArrivalTime (int arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 }

@@ -13,17 +13,17 @@ import java.util.Random;
 public class Main {
     private static PCB pcb[];
 
-    private static void invalidArguments() {
+    private static void invalidArguments () {
         System.out.println("Invalid arguments.");
         System.exit(1);
     }
 
-    private static void invalidFile() {
+    private static void invalidFile () {
         System.out.println("Cannot open file.");
         System.exit(1);
     }
 
-    private static void openAndPrepareProcess(String filename) {
+    private static void openAndPrepareProcess (String filename) {
         try {
             FileReader fr = new FileReader(filename);
             BufferedReader br = new BufferedReader(fr);
@@ -50,7 +50,7 @@ public class Main {
         }
     }
 
-    private static void normalDistribution(int nProcess, float mean, float standardDeviation) {
+    private static void normalDistribution (int nProcess, float mean, float standardDeviation) {
         pcb = new PCB[nProcess];
         for (int n = 0; n < nProcess; n++) {
             Random rand = new Random();
@@ -60,7 +60,7 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main (String[] args) {
         boolean generate = false;
         float quantum;
         String filename;
@@ -85,7 +85,7 @@ public class Main {
                     standardDeviation = Float.parseFloat(args[7]);
                     normalDistribution(nProcess, mean, standardDeviation);
                 }
-            } else if (Objects.equals(args[1], "rr") ||Objects.equals(args[1], "--all")) {
+            } else if (Objects.equals(args[1], "rr") || Objects.equals(args[1], "--all")) {
                 System.out.println("sim");
                 if ((Objects.equals(args[4], "-n")) && (Objects.equals(args[6], "-m")) && (Objects.equals(args[8], "-sd"))) {
                     nProcess = Integer.parseInt((args[5]));
@@ -98,24 +98,20 @@ public class Main {
             }
         }
         if (Objects.equals(args[1], "fcfs")) {
-            FCFS firstComeFirstServed = new FCFS(pcb);
-            firstComeFirstServed.run();
+            new FCFS(pcb).run();
         } else if (Objects.equals(args[1], "rr")) {
             if (Objects.equals(args[2], "-q")) {
                 quantum = Float.parseFloat(args[3]);
-                RR roundRobin = new RR(quantum, pcb);
-                roundRobin.run();
+                new RR(quantum, pcb).run();
             } else {
                 invalidArguments();
             }
         } else if (Objects.equals(args[1], "--all")) {
             if (Objects.equals(args[2], "-q")) {
                 quantum = Float.parseFloat(args[3]);
-                FCFS firstComeFirstServed = new FCFS(pcb);
-                firstComeFirstServed.run();
-                RR roundRobin = new RR(quantum, pcb);
-                roundRobin.run();
-            }else {
+                new FCFS(pcb).run();
+                new RR(quantum, pcb).run();
+            } else {
                 invalidArguments();
             }
         } else {

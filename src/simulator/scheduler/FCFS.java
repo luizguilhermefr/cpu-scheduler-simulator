@@ -1,12 +1,12 @@
 package simulator.scheduler;
 
 class FCFS extends Scheduler {
-    FCFS(PCB[] pcb) {
+    FCFS (PCB[] pcb) {
         super(pcb);
-        System.out.println("Policy: First Come First Served");
+        System.out.println("Policy: First Come, First Served");
     }
 
-    private void calcAllFcfs() {
+    private void calcAllFcfs () {
         for (int i = 0; i < nProcess; i++) {
             if (i != 0) {
                 processControlBlock[i].setBeginTime(processControlBlock[i - 1].getEndTime());
@@ -18,7 +18,7 @@ class FCFS extends Scheduler {
         timeLine = processControlBlock[nProcess - 1].getEndTime();
     }
 
-    void run() {
+    void run () {
         sortPcb();
         calcAllFcfs();
         for (int i = 0; i < nProcess; i++) {

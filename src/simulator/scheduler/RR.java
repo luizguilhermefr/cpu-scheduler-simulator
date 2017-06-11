@@ -3,20 +3,20 @@ package simulator.scheduler;
 class RR extends Scheduler {
     private float quantum;
 
-    RR(float quantum, PCB[] pcb) {
+    RR (float quantum, PCB[] pcb) {
         super(pcb);
         this.quantum = quantum;
         System.out.println("Policy: Round Robin");
         System.out.println("Quantum: " + this.quantum);
     }
 
-    private void setParameters() {
+    private void setParameters () {
         for (int i = 0; i < nProcess; i++) {
             processControlBlock[i].setRemainingTime(processControlBlock[i].getBurstTime());
         }
     }
 
-    private float timeLineCalc() {
+    private float timeLineCalc () {
         float cont = processControlBlock[0].getArrivalTime();
         for (int i = 0; i < this.nProcess; i++) {
             cont += processControlBlock[i].getBurstTime();
@@ -24,7 +24,7 @@ class RR extends Scheduler {
         return cont;
     }
 
-    void run() {
+    void run () {
         sortPcb();
         setParameters();
         float actualTime = processControlBlock[0].getArrivalTime();
@@ -33,10 +33,10 @@ class RR extends Scheduler {
         while (actualTime < timeLine) {
             for (int i = 0; i < nProcess; i++) {
                 if (processControlBlock[i].getRemainingTime() > 0) {
-                    if( i != before ) {
+                    if (i != before) {
                         preemptionTable(before, i, actualTime);
                     }
-                     before = i;
+                    before = i;
                     for (int j = 0; j < nProcess; j++) {
                         if (i != j && processControlBlock[j].getRemainingTime() > 0) {
                             float temp = 0;

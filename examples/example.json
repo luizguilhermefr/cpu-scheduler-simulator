@@ -1,17 +1,22 @@
 [
   {
-    "name": "My Browser",
-    "burst_time": 12.0,
+    "name": "Mozilla Firefox",
+    "burst_time": 22.0,
+    "arrival_time": 0.1
+  },
+  {
+    "name": "gedit",
+    "burst_time": 1.55,
     "arrival_time": 0.2
   },
   {
-    "name": "My Text Editor",
-    "burst_time": 1.55,
-    "arrival_time": 1.2
+    "name": "gimp",
+    "burst_time": 12.2,
+    "arrival_time": 0.21
   },
   {
-    "name": "My Porn Chrome Tab",
-    "burst_time": 2.2,
-    "arrival_time": 3
+    "name": "LibreOffice Calc",
+    "burst_time": 18.0,
+    "arrival_time": 0.3
   }
 ]
