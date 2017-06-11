@@ -12,7 +12,7 @@ Additional Libraries: **https://github.com/stleary/JSON-java**
 
 The program may be call using:
 
-`java -jar program.jar [file|generator][policy|all][generator options]
+`java -jar program.jar [file|generator][policy|all][generator options]`
 
 Where:
 
