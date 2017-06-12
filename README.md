@@ -82,6 +82,9 @@ Quantum: 2
 ### Contributors
 
 [Elixandre Michael Baldi](https://github.com/ElixandreBaldi)
+
 [João Victor Canabarro](https://github.com/jcanabarro)
+
 [Luiz Guilherme F. Rosa](https://github.com/luizguilhermefr)
-And *Professor Dr. Marcio Seiji Oyamada*
+
+And **Professor Dr. Marcio Seiji Oyamada**
