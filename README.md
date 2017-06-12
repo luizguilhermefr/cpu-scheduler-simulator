@@ -93,7 +93,7 @@ Quantum: 2
 
 - **FCFS** Class: The First Come, First Served scheduler class. Extends the Scheduler class.
 
-![Class Diagram](https://raw.githubusercontent.com/luizguilhermefr/cpu-scheduler-simulator/master/project%20details/class%20diagram.png)
+![Class Diagram](./project%20details/class%20diagram.png =400x400)
 
 ### Contributors
 
