@@ -56,6 +56,8 @@ The input file is a **JSON** structured like:
 }
 ```
 
+### Return
+
 The expected return will be the scheduling result of the processes within the given policy. It is printed like:
 
 ```
@@ -78,6 +80,20 @@ Quantum: 2
 | Average        | 2.2       | 3.0            |
 -----------------------------------------------
 ```
+
+### Implementation
+
+- **Main** Class: Entry of command line args, and input preparation.
+
+- **PCB** Class: Stands for "Process Control Block". Represents an unitary process. An array of PCB represents the processes set.
+
+- **Scheduler** Class: The generalized class for scheduler. It is extended by the next two classes.
+
+- **RR** Class: The Round Robin scheduler class. Extends the Scheduler class adding the specific methods and attributes (e.g. the *quantum*).
+
+- **FCFS** Class: The First Come, First Served scheduler class. Extends the Scheduler class.
+
+![Class Diagram](https://raw.githubusercontent.com/luizguilhermefr/cpu-scheduler-simulator/master/project%20details/class%20diagram.png)
 
 ### Contributors
 
