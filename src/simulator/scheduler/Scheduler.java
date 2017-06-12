@@ -1,9 +1,5 @@
 package simulator.scheduler;
 
-import javafx.animation.Timeline;
-
-import java.util.Locale;
-
 class Scheduler {
     PCB[] processControlBlock;
     int nProcess;
@@ -23,15 +19,12 @@ class Scheduler {
         this.normalization = this.processControlBlock[0].getArrivalTime();
     }
 
-    void sortPcb () {
-        for (int i = 0; i < nProcess; i++) {
-            for (int j = 1; j < nProcess; j++) {
-                if (processControlBlock[j].getArrivalTime() < processControlBlock[j - 1].getArrivalTime()) {
-                    PCB temptemp = processControlBlock[j - 1];
-                    processControlBlock[j - 1] = processControlBlock[j];
-                    processControlBlock[j] = temptemp;
-                }
-            }
+    void timeLineCalc () {
+        processControlBlock[0].setArrivalTime(0);
+        for (int i = 1; i < this.nProcess; i++) {
+            float cont = processControlBlock[i-1].getArrivalTime();
+            cont += processControlBlock[i].getArrivalTime();
+            processControlBlock[i].setArrivalTime(cont);
         }
     }
 
@@ -44,7 +37,7 @@ class Scheduler {
         avgExecutionTime /= nProcess;
     }
 
-    private String indentation (String text, int limit) {
+    private String indentation(String text, int limit) {
         int qtdSpace = 0;
         if (limit >= text.length()) {
             qtdSpace = limit - text.length();
@@ -68,21 +61,21 @@ class Scheduler {
                 "---------------------------------------------------------------------------\n");
         for (int i = 0; i < nProcess; i++) {
             System.out.print("|" + indentation(processControlBlock[i].getName(), 16) + "|");
-            System.out.print(indentation(String.valueOf(String.format(Locale.US, "%.3f", processControlBlock[i].getWaitTime())), 11) + "|");
-            System.out.print(indentation(String.valueOf(String.format(Locale.US, "%.3f", processControlBlock[i].getWaitTime() + processControlBlock[i].getExecuted())), 16) + "|");
-            System.out.print(indentation(String.valueOf(String.format(Locale.US, "%.3f", processControlBlock[i].getArrivalTime())), 14) + "|");
-            System.out.print(indentation(String.valueOf(String.format(Locale.US, "%.3f", processControlBlock[i].getBurstTime())), 12) + "|\n");
+            System.out.print(indentation(String.valueOf(String.format("%.3f",processControlBlock[i].getWaitTime())), 11) + "|");
+            System.out.print(indentation(String.valueOf(String.format("%.3f",processControlBlock[i].getWaitTime() + processControlBlock[i].getExecuted())), 16) + "|");
+            System.out.print(indentation(String.valueOf(String.format("%.3f",processControlBlock[i].getArrivalTime())), 14) + "|");
+            System.out.print(indentation(String.valueOf(String.format("%.3f",processControlBlock[i].getBurstTime())), 12) + "|\n");
         }
         System.out.print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
         System.out.print("|" + indentation("Average", 16) + "|");
-        System.out.print(indentation(String.valueOf(String.format("%.3f", avgWaitTime)), 11) + "|");
-        System.out.print(indentation(String.valueOf(String.format("%.3f", avgExecutionTime)), 16) + "|");
-        System.out.println(indentation("Total Burst", 14) + "|" + indentation(String.valueOf(String.format("%.3f", this.timeLine)), 12) + "|");
+        System.out.print(indentation(String.valueOf(String.format("%.3f",avgWaitTime)), 11) + "|");
+        System.out.print(indentation(String.valueOf(String.format("%.3f",avgExecutionTime)), 16) + "|");
+        System.out.println(indentation("Total Burst", 14) + "|" + indentation(String.valueOf(String.format("%.3f",this.timeLine)), 12) +"|");
         System.out.print("---------------------------------------------------------------------------\n\n");
     }
 
     void preemptionTable (int i, int j, float time) {
-        System.out.println("\n-> Context Change at time = " + String.format(Locale.US, "%.3f", time));
+        System.out.println("\n-> Context Change at time = " + String.format("%.3f",time));
         System.out.println("---------------------------------------");
         System.out.println("| Exits            | Enters           |");
         System.out.println("---------------------------------------");
