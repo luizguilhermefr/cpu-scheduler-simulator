@@ -56,30 +56,32 @@ The input file is a **JSON** structured like:
 }
 ```
 
-And the expected return:
-
+The expected return will be the scheduling result of the processes within the given policy. It is printed like:
 
 ```
-Starting scheduling with 3 process.
+Starting scheduling with 3 processes.
 Policy: Round Robin
 Quantum: 2
-```
 
-```
------------------------------------------------
-| Process        | Wait Time | Execution Time |
------------------------------------------------
-| My Browser     | 2.2       | 2.8            |
-| My Text Editor | 1.0       | 1.8            |
------------------------------------------------
-```
-
-
-```
 -- Preemption -- Current Time = 2.2 ---
 | Exits            | Enters           |
 ---------------------------------------
 | My Browser       | My Text Editor   |
 ---------------------------------------
+
+-----------------------------------------------
+| Process        | Wait Time | Execution Time |
+-----------------------------------------------
+| My Browser     | 0.0       | 2.2            |
+| My Text Editor | 2.2       | 3.8            |
+-----------------------------------------------
+| Average        | 2.2       | 3.0            |
+-----------------------------------------------
 ```
 
+### Contributors
+
+[Elixandre Michael Baldi](https://github.com/ElixandreBaldi)
+[João Victor Canabarro](https://github.com/jcanabarro)
+[Luiz Guilherme F. Rosa](https://github.com/luizguilhermefr)
+And *Professor Dr. Marcio Seiji Oyamada*
