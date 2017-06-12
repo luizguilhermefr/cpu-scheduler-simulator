@@ -93,7 +93,7 @@ Quantum: 2
 
 - **FCFS** Class: The First Come, First Served scheduler class. Extends the Scheduler class.
 
-![Class Diagram](./project%20details/class%20diagram.png | width=400)
+![Class Diagram](./project%20details/class%20diagram.png)
 
 ### Contributors
 
