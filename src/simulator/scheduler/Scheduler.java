@@ -3,21 +3,23 @@ package simulator.scheduler;
 class Scheduler {
     PCB[] processControlBlock;
     int nProcess;
-    float timeLine = 0;
+    double timeLine = 0;
     private float avgExecutionTime, avgWaitTime;
-    float normalization;
 
     Scheduler (PCB[] pcb) {
         this.processControlBlock = pcb;
         this.nProcess = pcb.length;
-        normalization();
         System.out.println("Initialized scheduler with " + this.nProcess + " processes.");
 
     }
-
-    private void normalization () {
-        this.normalization = this.processControlBlock[0].getArrivalTime();
+    private float totalBurstTime(){
+        float totalexecution = 0;
+        for (int i = 0; i < this.nProcess; i++){
+            totalexecution += processControlBlock[i].getBurstTime();
+        }
+        return totalexecution;
     }
+
 
     void timeLineCalc () {
         processControlBlock[0].setArrivalTime(0);
@@ -26,6 +28,14 @@ class Scheduler {
             cont += processControlBlock[i].getArrivalTime();
             processControlBlock[i].setArrivalTime(cont);
         }
+    }
+    boolean remainTime(){
+
+        for(int i = 0; i < nProcess; i++){
+            if(processControlBlock[i].getRemainingTime() > 0)
+                return true;
+        }
+        return false;
     }
 
     void averageTime () {
@@ -56,6 +66,14 @@ class Scheduler {
     }
 
     void resultTable () {
+        for(int i = 0; i <this.nProcess; i++) {
+            float temp = processControlBlock[i].getWaitTime();
+            if(temp >= processControlBlock[i].getArrivalTime())
+                temp -= processControlBlock[i].getArrivalTime();
+
+            processControlBlock[i].setWaitTime(temp);
+        }
+
         System.out.print("---------------------------------------------------------------------------\n" +
                 "| Process        | Wait Time | Execution Time | Arrival Time | Burst Time |\n" +
                 "---------------------------------------------------------------------------\n");
@@ -70,7 +88,7 @@ class Scheduler {
         System.out.print("|" + indentation("Average", 16) + "|");
         System.out.print(indentation(String.valueOf(String.format("%.3f",avgWaitTime)), 11) + "|");
         System.out.print(indentation(String.valueOf(String.format("%.3f",avgExecutionTime)), 16) + "|");
-        System.out.println(indentation("Total Burst", 14) + "|" + indentation(String.valueOf(String.format("%.3f",this.timeLine)), 12) +"|");
+        System.out.println(indentation("Total Burst", 14) + "|" + indentation(String.valueOf(String.format("%.3f",totalBurstTime())), 12) +"|");
         System.out.print("---------------------------------------------------------------------------\n\n");
     }
 

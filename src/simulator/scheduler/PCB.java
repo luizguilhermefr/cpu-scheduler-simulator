@@ -18,11 +18,6 @@ public class PCB {
         this.waitTime = waitTime;
     }
 
-    void changeWaitTime (float value) {
-        this.waitTime -= this.arrivalTime;
-        this.waitTime += value;
-    }
-
     PCB (String name, float burstTime, float arrivalTime) {
         this.name = name;
         this.arrivalTime = arrivalTime;
