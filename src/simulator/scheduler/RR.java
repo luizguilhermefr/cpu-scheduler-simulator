@@ -69,7 +69,6 @@ class RR extends Scheduler {
                         }else{
                             actualTime = processControlBlock[i].getArrivalTime();
                             processControlBlock[i].setWaitTime((processControlBlock[i].getArrivalTime() - processControlBlock[j].getArrivalTime() ));
-                            System.out.println("AQUI: "+ processControlBlock[i].getWaitTime());
                         }
                     }
                 }
