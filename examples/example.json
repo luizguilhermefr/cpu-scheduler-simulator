@@ -12,7 +12,7 @@
   {
     "name": "gimp",
     "burst_time": 6,
-    "arrival_time": 60.21
+    "arrival_time": 0.4
   },
   {
     "name": "LibreOffice Calc",

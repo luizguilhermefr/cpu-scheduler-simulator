@@ -109,8 +109,9 @@ public class Main {
         } else if (Objects.equals(args[1], "--all")) {
             if (Objects.equals(args[2], "-q")) {
                 quantum = Float.parseFloat(args[3]);
+                PCB cpy[] = pcb;
                 new FCFS(pcb).run();
-                new RR(quantum, pcb).run();
+                new RR(quantum, cpy).run();
             } else {
                 invalidArguments();
             }
