@@ -9,29 +9,29 @@ class FCFS extends Scheduler {
     private void calcAllFcfs () {
         for (int i = 0; i < nProcess; i++) {
             if (i != 0) {
-                if(processControlBlock[i].getArrivalTime() <= processControlBlock[i-1].getEndTime()) {
-                    processControlBlock[i].setBeginTime(processControlBlock[i - 1].getEndTime());
-                }else{
-                    processControlBlock[i].setBeginTime(processControlBlock[i].getArrivalTime());
+                if (this.processControlBlock[i].getArrivalTime() <= this.processControlBlock[i - 1].getEndTime()) {
+                    this.processControlBlock[i].setBeginTime(this.processControlBlock[i - 1].getEndTime());
+                } else {
+                    this.processControlBlock[i].setBeginTime(this.processControlBlock[i].getArrivalTime());
                 }
             } else {
-                processControlBlock[i].setBeginTime(0);
+                this.processControlBlock[i].setBeginTime(0);
             }
-            processControlBlock[i].setEndTime(processControlBlock[i].getBurstTime() + processControlBlock[i].getBeginTime());
+            this.processControlBlock[i].setEndTime(this.processControlBlock[i].getBurstTime() + this.processControlBlock[i].getBeginTime());
         }
-        timeLine = processControlBlock[nProcess - 1].getEndTime();
+        this.timeLine = this.processControlBlock[this.nProcess - 1].getEndTime();
     }
 
     void run () {
         timeLineCalc();
         calcAllFcfs();
-        for (int i = 0; i < nProcess; i++) {
+        for (int i = 0; i < this.nProcess; i++) {
             float temp = 0;
-            processControlBlock[i].setExecuted(processControlBlock[i].getBurstTime());
-            processControlBlock[i].setRemainingTime(0);
-            processControlBlock[i].setWaitTime(processControlBlock[i].getBeginTime() - processControlBlock[i].getArrivalTime());
+            this.processControlBlock[i].setExecuted(this.processControlBlock[i].getBurstTime());
+            this.processControlBlock[i].setRemainingTime(0);
+            this.processControlBlock[i].setWaitTime(this.processControlBlock[i].getBeginTime() - this.processControlBlock[i].getArrivalTime());
             if (i + 1 != nProcess) {
-                preemptionTable(i, i + 1, processControlBlock[i].getEndTime());
+                preemptionTable(i, i + 1, this.processControlBlock[i].getEndTime());
             }
         }
         averageTime();

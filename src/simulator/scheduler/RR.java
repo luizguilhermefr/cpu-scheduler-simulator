@@ -11,8 +11,8 @@ class RR extends Scheduler {
     }
 
     private void setParameters () {
-        for (int i = 0; i < nProcess; i++) {
-            processControlBlock[i].setRemainingTime(processControlBlock[i].getBurstTime());
+        for (int i = 0; i < this.nProcess; i++) {
+            this.processControlBlock[i].setRemainingTime(this.processControlBlock[i].getBurstTime());
         }
     }
 
@@ -23,52 +23,52 @@ class RR extends Scheduler {
         int before = 0;
         boolean verify = true;
         while (remainTime()) {
-            for (int i = 0; i < nProcess; i++) {
-                if(processControlBlock[i].getArrivalTime() <= actualTime) {
-                    if (processControlBlock[i].getRemainingTime() > 0) {
+            for (int i = 0; i < this.nProcess; i++) {
+                if (this.processControlBlock[i].getArrivalTime() <= actualTime) {
+                    if (this.processControlBlock[i].getRemainingTime() > 0) {
                         if (i != before) {
                             preemptionTable(before, i, actualTime);
                         }
                         before = i;
-                        for (int j = 0; j < nProcess; j++) {
-                            if (i != j && processControlBlock[j].getRemainingTime() > 0) {
+                        for (int j = 0; j < this.nProcess; j++) {
+                            if (i != j && this.processControlBlock[j].getRemainingTime() > 0) {
                                 float temp = 0;
-                                if (processControlBlock[i].getRemainingTime() >= this.quantum) {
-                                    temp = processControlBlock[j].getWaitTime() + this.quantum;
+                                if (this.processControlBlock[i].getRemainingTime() >= this.quantum) {
+                                    temp = this.processControlBlock[j].getWaitTime() + this.quantum;
                                 } else {
-                                    temp = processControlBlock[j].getWaitTime() + processControlBlock[i].getRemainingTime();
+                                    temp = this.processControlBlock[j].getWaitTime() + this.processControlBlock[i].getRemainingTime();
                                 }
-                                processControlBlock[j].setWaitTime(temp);
+                                this.processControlBlock[j].setWaitTime(temp);
                             }
                         }
-                        if (processControlBlock[i].getRemainingTime() < this.quantum) {
-                            actualTime += processControlBlock[i].getRemainingTime();
-                            float temp = processControlBlock[i].getRemainingTime();
-                            temp += processControlBlock[i].getExecuted();
-                            processControlBlock[i].setExecuted(temp);
-                            processControlBlock[i].setRemainingTime(0);
+                        if (this.processControlBlock[i].getRemainingTime() < this.quantum) {
+                            actualTime += this.processControlBlock[i].getRemainingTime();
+                            float temp = this.processControlBlock[i].getRemainingTime();
+                            temp += this.processControlBlock[i].getExecuted();
+                            this.processControlBlock[i].setExecuted(temp);
+                            this.processControlBlock[i].setRemainingTime(0);
                         } else {
                             float temp = this.quantum;
-                            temp += processControlBlock[i].getExecuted();
-                            processControlBlock[i].setExecuted(temp);
-                            float temp2 = processControlBlock[i].getRemainingTime();
+                            temp += this.processControlBlock[i].getExecuted();
+                            this.processControlBlock[i].setExecuted(temp);
+                            float temp2 = this.processControlBlock[i].getRemainingTime();
                             temp2 -= this.quantum;
-                            processControlBlock[i].setRemainingTime(temp2);
+                            this.processControlBlock[i].setRemainingTime(temp2);
                             actualTime += this.quantum;
                         }
                     }
-                }else{
-                    for (int j = 0; j < i; j++){
-                        if(processControlBlock[j].getRemainingTime() > 0) {
+                } else {
+                    for (int j = 0; j < i; j++) {
+                        if (this.processControlBlock[j].getRemainingTime() > 0) {
                             break;
-                        }else if(verify){
-                            actualTime = processControlBlock[i].getArrivalTime();
-                            processControlBlock[i].setWaitTime(0);
+                        } else if (verify) {
+                            actualTime = this.processControlBlock[i].getArrivalTime();
+                            this.processControlBlock[i].setWaitTime(0);
                             verify = false;
                             break;
-                        }else{
-                            actualTime = processControlBlock[i].getArrivalTime();
-                            processControlBlock[i].setWaitTime((processControlBlock[i].getArrivalTime() - processControlBlock[j].getArrivalTime() ));
+                        } else {
+                            actualTime = this.processControlBlock[i].getArrivalTime();
+                            this.processControlBlock[i].setWaitTime((this.processControlBlock[i].getArrivalTime() - this.processControlBlock[j].getArrivalTime()));
                         }
                     }
                 }

@@ -72,7 +72,7 @@ public class PCB {
         return this.arrivalTime;
     }
 
-    protected void setArrivalTime (float arrivalTime) {
+    void setArrivalTime (float arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 }
